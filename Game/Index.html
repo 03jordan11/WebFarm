@@ -7,123 +7,58 @@
   <title>The HTML5 Herald</title>
   <meta name="description" content="Farming Game">
   <meta name="author" content="SitePoint">
-    <script src="Scripts/jquery-3.3.1.js"></script>
-  <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Styles -->
+    <link rel="stylesheet" href="CSS/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/index.css">
+    <!-- Styles -->
 
-    <style>
-        body{
-            background-color:bisque;
-        }
-    #Farm{
-        position: absolute;
-        left: 35%;
-        top: 35%;
-        height: 500px;
-        width: 500px;
-    }
-        #Seeds{
-            position: absolute;
-            left:5%;
-            top: 30%;
-        }
-        #bottomButtons{
-            position: absolute;
-            bottom: 5%;
-            left: 5%;
-        }
-        #Sell{
-            position: absolute;
-            bottom: 10%;
-            left: 10%;
-        }
-        #Water{
-            position: absolute;
-            right: 10%;
-            bottom: 10%;
-            
-        }
-        .btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
-}
-.btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 25px;
-}
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px;
-}
-        
-        #cash{
-            position: absolute;
-            left: 5%;
-            top: 10%;
-        } 
-        text{
-            position: relative;
-            font-size: 40px;
-            bottom: 10px;
-        }
-        #Upgrades{
-            position: absolute;
-            right: 10%;
-            top: 10%;
-        }
-</style> 
-    
 </head>
 
 <body>
   <div id="cash"><i class="fa fa-money-bill-alt fa-5x"></i><text> $122,503.25</text></div>
-    
-    <div id="Upgrades" ></div>
-    <div id="Seeds">
-    </div>
-    <div id="Farm"> </div>
-    
-    
-        <button class="btn btn-success btn-xl btn-circle" id="Sell"><i class="fas fa-dollar-sign"></i></button>
-        <button class="btn btn-primary btn-xl btn-circle" id="Water"><i class="fas fa-water"></i></button>
-    
-   
+
+    <div id="Upgrades"></div>
+    <div id="Seeds"></div>
+    <div id="Farm"></div>
+  <pre id="object">asdfasdf</pre>
+  <button class="btn btn-success btn-xl btn-circle" id="Sell"><i class="fas fa-dollar-sign"></i></button>
+  <button class="btn btn-primary btn-xl btn-circle" id="Water"><i class="fas fa-water"></i></button>
+
+
 </body>
-  
+
+<!-- SCRIPTS -->
+<script src="Scripts/jquery-3.3.1.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyD2OYX-qt_OQ-zo4PA3hutUHvj5S1X6srk",
-    authDomain: "webfarm-cadb7.firebaseapp.com",
-    databaseURL: "https://webfarm-cadb7.firebaseio.com",
-    projectId: "webfarm-cadb7",
-    storageBucket: "",
-    messagingSenderId: "417295380615"
-  };
-  firebase.initializeApp(config);
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyD2OYX-qt_OQ-zo4PA3hutUHvj5S1X6srk",
+        authDomain: "webfarm-cadb7.firebaseapp.com",
+        databaseURL: "https://webfarm-cadb7.firebaseio.com",
+        projectId: "webfarm-cadb7",
+        storageBucket: "webfarm-cadb7.appspot.com",
+        messagingSenderId: "417295380615"
+    };
+    firebase.initializeApp(config);
+    const preObject = $("#object");
+
+    const dbRefObject = firebase.database().ref().child('object');
+
+    dbRefObject.on('value', snap => {
+        $("#object").text(JSON.stringify(snap.val(), null, 3));
+    });
 </script>
-    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="CSS/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script>
-$("#Farm").load("_Farm.html");
-        $("#Seeds").load("_Seeds.html");
-        $("#Upgrades").load("_Upgrades.html");
+//$("#Farm").load(window.location.origin + "/WebFarm/Game/HTML/_Farm.html");
+        //$("#Seeds").load("_Seeds.html");
+        //$("#Upgrades").load("_Upgrades.html");
 </script>
-    
-    
+<script src="Scripts/index.js"></script>
+
+
 </html>
 
 
