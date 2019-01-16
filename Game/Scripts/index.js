@@ -1,10 +1,5 @@
 
-$(window).load("load", function(){
-    // Initialize Firebase
 
-
-
-})
 
 var config = {
     apiKey: "AIzaSyD2OYX-qt_OQ-zo4PA3hutUHvj5S1X6srk",
@@ -15,9 +10,8 @@ var config = {
     messagingSenderId: "417295380615"
 };
 firebase.initializeApp(config);
-const preObject = $("#object");
-
-const dbRefObject = firebase.database().ref().child('object');
+const db = firebase.database();
+const dbRefObject = db.ref().child('object');
 
 dbRefObject.on('value', snap => {
     $("#object").text(JSON.stringify(snap.val(), null, 3));
@@ -28,15 +22,34 @@ $("#Farm").load(window.location.origin + "/WebFarm/Game/HTML/_Farm.html");
 $("#Seeds").load(window.location.origin + "/WebFarm/Game/HTML/_Seeds.html");
 $("#Upgrades").load(window.location.origin + "/WebFarm/Game/HTML/_Upgrades.html");
 
+var userId;
+var userEmail;
+//used to get ID and email
+firebase.auth().onAuthStateChanged(function(user){
+    if (user){
+        var temp = null;
+        userId = user.uid;
+        userEmail = user.email;
+        db.ref().child("users").orderByChild("authId").equalTo(user.uid).on("value", x => {
+            temp = x.val();
+        });
+        if(temp === null){
+           db.ref('users/' + userId).set({
+               cash: 0,
+               email: user.email,
+               gardenId: 0,
+               level: 0,
+               seeds: 0,
+               upgrades: 0,
+               xp: 0
+           });
 
-var x = [{
-    "name": "Sunflower",
-    "cost": 0.72,
-    "growTime": 4
-},
-    {
-        "name": "Tomato",
-        "cost": 0.50,
-        "growTime": 5,
+           db.ref('gardens/' + userId).set({
+               Plants: 0,
+               Size: 4,
+               UserId: userId
+           })
+        }
     }
-]
+});
+
