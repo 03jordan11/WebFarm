@@ -10,7 +10,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="/CSS/index.css">
     <!-- Styles -->
 
 
@@ -56,12 +56,6 @@
         padding-right: 100px;
         paddding-top: 100px;
     }
-
-    .centered{
-        position: fixed;
-        top: 50%;
-        left: 50%;
-    }
 </style>
 <body>
 <ul class="nav" style="background: black;">
@@ -84,7 +78,7 @@
                     <p class="card-text">I am a soon to be graduate of computer science looking for opportunities to advance my skills in a professional work environment.</p>
                 </div>
                 <div class="card-footer text-muted">
-                    <a href="/Game/BurnesResume.pdf" class="btn btn-primary btn-block" download>Download Resume</a><a target="_blank" href="https://www.linkedin.com/in/jordan-burnes-83bb4295/" class="btn btn-primary btn-block">Linked In</a>
+                    <a href="/BurnesResume.pdf" class="btn btn-primary btn-block" download>Download Resume</a><a target="_blank" href="https://www.linkedin.com/in/jordan-burnes-83bb4295/" class="btn btn-primary btn-block">Linked In</a>
                 </div>
             </div>
         </div>
@@ -157,17 +151,17 @@
 </body>
 
 <!-- SCRIPTS -->
-<script src="Scripts/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
 <script>
     $(".resumeLink").on('click', function(){
-       location.reload();
+        location.reload();
     });
 
     $(".projectLink").on('click', function(){
-        $("#BodyContainer").load("/Game/StackExchangePartial.html");
+        $("#BodyContainer").load("/StackExchangePartial.html");
     })
 </script>
 
